@@ -1,21 +1,14 @@
 # Etapa 1: Build
-FROM maven:3.9.2-eclipse-temurin-17 AS build
+FROM maven:3.9.2-eclipse-temurin-21 AS build
 WORKDIR /app
-
-# Copiamos los archivos de Maven y descargamos dependencias
 COPY pom.xml .
 COPY src ./src
 RUN mvn clean package -DskipTests
 
 # Etapa 2: Runtime
-FROM eclipse-temurin:17-jdk-alpine
+FROM eclipse-temurin:21-jdk-alpine
 WORKDIR /app
-
-# Copiamos solo el JAR construido desde la etapa de build
-COPY --from=build /app/target/mi-app.jar app.jar
-
-# Exponemos el puerto que usa Spring Boot
+COPY --from=build /app/target/searchEngine-0.0.1-SNAPSHOT.jar app.jar
 EXPOSE 8080
-
-# Comando para ejecutar la app
 ENTRYPOINT ["java", "-jar", "app.jar"]
+
