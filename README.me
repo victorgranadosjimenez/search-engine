@@ -1,0 +1,111 @@
+# 🔍 Search Engine Demo
+
+Aplicación web de búsqueda basada en un **índice invertido** implementado con **Spring Boot** (backend) y **HTML/CSS/JavaScript** (frontend).
+
+Permite:
+- Añadir documentos (título + contenido)
+- Buscar documentos por palabras clave
+- Ver el índice invertido
+- Realizar búsquedas con ranking de relevancia (TF-IDF)
+
+---
+
+## 🧱 Arquitectura del proyecto
+
+Este proyecto sigue una estructura **MVC simplificada**, organizada de la siguiente forma:
+
+search-engine/
+├── src/main/java/searchEngine/
+│ ├── controller/DocumentController.java → Maneja las peticiones HTTP
+│ ├── service/DocumentService.java → Lógica de negocio y búsquedas
+│ ├── repository/DocumentRepository.java → Acceso a la base de datos (JPA)
+│ ├── domain/Document.java → Entidad JPA (id, title, content)
+│ └── SearchEngineApplication.java → Clase principal de arranque
+├── src/main/resources/application.properties
+└── frontend/ → Archivos estáticos
+├── index.html
+├── style.css
+└── app.js
+
+---
+
+## 🗄️ Base de datos
+
+El proyecto usa **MySQL** con Spring Data JPA.
+
+**Configuración (`application.properties`):**
+
+```properties
+spring.datasource.url=jdbc:mysql://localhost:3306/searchEngine?createDatabaseIfNotExist=true
+spring.datasource.username=root
+spring.datasource.password=12345678
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.database-platform=org.hibernate.dialect.MySQLDialect
+
+
+
+🚀 Endpoints principales (API REST)
+Método	Endpoint	Descripción
+GET	/api/documents	Devuelve todos los documentos
+POST	/api/documents	Crea un nuevo documento
+GET	/api/documents/search?q=palabra	Busca documentos que contengan la palabra
+GET	/api/documents/search/ranked?q=palabra	Devuelve resultados ordenados por relevancia
+GET	/api/documents/index	Devuelve el índice invertido completo
+
+
+💻 Frontend
+
+El frontend es una interfaz sencilla desarrollada con HTML, CSS y JavaScript, que interactúa con el backend mediante fetch.
+
+Funcionalidades:
+
+Añadir nuevos documentos
+
+Buscar por palabra clave o ranking
+
+Ver el índice invertido en formato JSON
+
+Interfaz responsive con estilo minimalista tipo Google
+
+
+
+🧠 Lógica del índice invertido
+Cada documento se tokeniza (palabras individuales), y se crea una estructura Map<String, Set<Long>>, donde cada palabra apunta a los IDs de los documentos que la contienen.
+Esto permite realizar búsquedas rápidas sin escanear todo el texto.
+
+
+
+
+
+⚙️ Cómo ejecutar el proyecto
+1. Clona el repositorio:
+git clone https://github.com/tuusuario/search-engine.git
+
+2. Abre el proyecto en tu IDE (IntelliJ, VSCode o Eclipse).
+- Asegúrate de tener MySQL ejecutándose en tu máquina.
+
+3. Ejecuta la aplicación:
+mvn spring-boot:run
+
+4. Abre el frontend (por ejemplo con http-server o doble clic en index.html):
+npx http-server frontend
+
+5. Visita:
+http://localhost:8080/api/documents
+
+o usa tu frontend end
+http://localhost:8081
+
+
+
+🧩 Tecnologías usadas
+
+Java 21
+Spring Boot 3
+Spring Data JPA
+MySQL
+HTML, CSS, JavaScript
+Fetch API
+RESTful API
