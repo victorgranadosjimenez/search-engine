@@ -1,18 +1,43 @@
 package searchEngine.service;
 
-
 import searchEngine.domain.Document;
+import searchEngine.repository.DocumentRepository;
 import org.springframework.stereotype.Service;
 
+import jakarta.annotation.PostConstruct;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 public class IndexService {
 
+    private final DocumentRepository documentRepository;
     // Estructura del índice: palabra -> conjunto de IDs de documentos
     private final Map<String, Set<Long>> invertedIndex = new ConcurrentHashMap<>();
+    private final DocumentService documentService; // Necesario para obtener todos los documentos
 
+
+
+
+    public IndexService(DocumentService documentService, DocumentRepository documentRepository) {
+        this.documentService = documentService;
+        this.documentRepository = documentRepository;
+    }
+
+    public void reindexAll() {
+        invertedIndex.clear();
+        List<Document> allDocuments = documentService.findAll();
+        indexDocuments(allDocuments);
+    }
+
+
+    // Inicializa el índice al arrancar la app
+    @PostConstruct
+    public void init() {
+        List<Document> allDocs = documentRepository.findAll();
+        indexDocuments(allDocs);
+        System.out.println("✅ Índice cargado con " + allDocs.size() + " documentos desde la BD");
+    }
 
 
     // Metodo para limpiar y dividir el texto
@@ -38,24 +63,17 @@ public class IndexService {
         }
     }
 
-
     // Mostrar el índice (para depuración)
     public Map<String, Set<Long>> getIndex() {
         return invertedIndex;
     }
-
-
-
-
 
     // Buscar documentos que contengan una palabra
     public Set<Long> search(String word) {
         return invertedIndex.getOrDefault(word.toLowerCase(), Collections.emptySet());
     }
 
-
-
-    //metodo para buscar con ranking
+    // Metodo para buscar con ranking
     public Map<Document, Integer> searchRanked(String query, List<Document> allDocuments) {
         Map<Document, Integer> rankedResults = new HashMap<>();
 
@@ -84,11 +102,7 @@ public class IndexService {
                         LinkedHashMap::putAll
                 );
     }
-
-
-
 }
-
 
 
 

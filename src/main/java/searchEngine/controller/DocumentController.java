@@ -27,10 +27,14 @@ public class DocumentController {
         return service.search(q);
     }
 
+
     @PostMapping
     public Document save(@RequestBody Document doc) {
-        return service.save(doc);
+        Document saved = service.save(doc);      // 1. Guardar en la BD
+        indexService.indexDocuments(List.of(saved)); // 2. Añadir al índice en memoria
+        return saved;
     }
+
 
     @GetMapping
     public List<Document> all() {
@@ -45,8 +49,11 @@ public class DocumentController {
 
     @GetMapping("/search/ranked")
     public ResponseEntity<Map<Document, Integer>> searchRanked(@RequestParam String q) {
-        return ResponseEntity.ok(service.searchWithRanking(q));
+        List<Document> allDocuments = service.findAll(); // todos los documentos de la BD
+        Map<Document, Integer> results = indexService.searchRanked(q, allDocuments);
+        return ResponseEntity.ok(results);
     }
+
 
 
 }
