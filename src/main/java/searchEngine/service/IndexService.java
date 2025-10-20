@@ -1,10 +1,10 @@
 package searchEngine.service;
 
+import jakarta.annotation.PostConstruct;
+import org.springframework.stereotype.Service;
 import searchEngine.domain.Document;
 import searchEngine.repository.DocumentRepository;
-import org.springframework.stereotype.Service;
 
-import jakarta.annotation.PostConstruct;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -12,26 +12,12 @@ import java.util.concurrent.ConcurrentHashMap;
 public class IndexService {
 
     private final DocumentRepository documentRepository;
-    // Estructura del índice: palabra -> conjunto de IDs de documentos
     private final Map<String, Set<Long>> invertedIndex = new ConcurrentHashMap<>();
-    private final DocumentService documentService; // Necesario para obtener todos los documentos
 
-
-
-
-    public IndexService(DocumentService documentService, DocumentRepository documentRepository) {
-        this.documentService = documentService;
+    public IndexService(DocumentRepository documentRepository) {
         this.documentRepository = documentRepository;
     }
 
-    public void reindexAll() {
-        invertedIndex.clear();
-        List<Document> allDocuments = documentService.findAll();
-        indexDocuments(allDocuments);
-    }
-
-
-    // Inicializa el índice al arrancar la app
     @PostConstruct
     public void init() {
         List<Document> allDocs = documentRepository.findAll();
@@ -39,22 +25,24 @@ public class IndexService {
         System.out.println("✅ Índice cargado con " + allDocs.size() + " documentos desde la BD");
     }
 
+    public void reindexAll() {
+        invertedIndex.clear();
+        List<Document> allDocs = documentRepository.findAll();
+        indexDocuments(allDocs);
+    }
 
-    // Metodo para limpiar y dividir el texto
     private List<String> tokenize(String text) {
         return Arrays.stream(text.toLowerCase()
-                        .replaceAll("[^a-záéíóúüñ0-9 ]", " ") // elimina símbolos
-                        .split("\\s+")) // separa por espacios
-                .filter(word -> word.length() > 2) // evita palabras muy cortas
+                        .replaceAll("[^a-záéíóúüñ0-9 ]", " ")
+                        .split("\\s+"))
+                .filter(word -> word.length() > 2)
                 .toList();
     }
 
-    // Agregar documentos al índice
     public void indexDocuments(List<Document> documents) {
         for (Document doc : documents) {
             String text = Optional.ofNullable(doc.getText()).orElse("");
             List<String> words = tokenize(text);
-
             for (String word : words) {
                 invertedIndex
                         .computeIfAbsent(word, k -> new HashSet<>())
@@ -63,20 +51,16 @@ public class IndexService {
         }
     }
 
-    // Mostrar el índice (para depuración)
     public Map<String, Set<Long>> getIndex() {
         return invertedIndex;
     }
 
-    // Buscar documentos que contengan una palabra
     public Set<Long> search(String word) {
         return invertedIndex.getOrDefault(word.toLowerCase(), Collections.emptySet());
     }
 
-    // Metodo para buscar con ranking
     public Map<Document, Integer> searchRanked(String query, List<Document> allDocuments) {
         Map<Document, Integer> rankedResults = new HashMap<>();
-
         List<String> words = tokenize(query);
 
         for (String word : words) {
@@ -92,7 +76,6 @@ public class IndexService {
             }
         }
 
-        // Ordenar por frecuencia (relevancia)
         return rankedResults.entrySet()
                 .stream()
                 .sorted((a, b) -> b.getValue().compareTo(a.getValue()))
@@ -103,6 +86,3 @@ public class IndexService {
                 );
     }
 }
-
-
-

@@ -5,6 +5,7 @@ import searchEngine.domain.Document;
 import searchEngine.repository.DocumentRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -21,28 +22,27 @@ public class DocumentService {
         this.indexService = indexService;
     }
 
-    // Guardar documento y actualizar índice
     public Document save(Document doc) {
         Document saved = repository.save(doc);
-        indexService.indexDocuments(List.of(saved)); // indexa el nuevo documento
+        indexService.indexDocuments(List.of(saved));
         return saved;
-    }
-
-    // Buscar documentos usando el índice invertido
-    public List<Document> search(String query) {
-        Set<Long> docIds = indexService.search(query);
-        if (docIds.isEmpty()) return List.of();
-        return repository.findAllById(docIds);
     }
 
     public List<Document> findAll() {
         return repository.findAll();
     }
 
+    public List<Document> search(String query) {
+        Set<Long> ids = new HashSet<>();
+        for (String word : query.toLowerCase().split("\\s+")) {
+            ids.addAll(indexService.search(word));
+        }
+        return repository.findAllById(ids);
+    }
 
     public Map<Document, Integer> searchWithRanking(String query) {
         List<Document> allDocs = repository.findAll();
         return indexService.searchRanked(query, allDocs);
     }
-
 }
+
