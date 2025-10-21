@@ -47,7 +47,7 @@ Este proyecto sigue una estructura **MVC simplificada**, organizada de la siguie
 
 
 🚀 Endpoints principales (API REST)
-Método  -	Endpoint  -	Descripción
+
 GET  -	/api/documents	-  Devuelve todos los documentos
 POST  -	/api/documents	-  Crea un nuevo documento
 GET  -	/api/documents/search?q=palabra  -	Busca documentos que contengan la palabra
