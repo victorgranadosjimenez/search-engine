@@ -6,13 +6,18 @@
 
 
 
+
 ## Ejemplo en vivo
 https://victorgranados.com/search-engine/
+
+
 
 
 ## Descripción 📑
 Cuando haces una búsqueda en Google o en un sitio con miles de productos, no se recorren todos los registros en tiempo real, sino que se crea un índice, una estructura de datos optimizada (como un diccionario invertido).
 Cada palabra apunta a los documentos donde aparece.
+
+
 
 
 ## Etapas del proyecto:
@@ -30,6 +35,7 @@ y lo guardamos en Base de datos.
 
 
 
+
 ⚡ 3. Interfaz o API
 Buscamos con un endpoint REST  /search?q=palabra
 Muestra primero los documentos más relevantes, según cuántas veces aparece la palabra.
@@ -37,6 +43,7 @@ Además:
 - Resaltamos en amarillo las coincidencias en los resultados.
 - podemos ver el índice invertido.
 - Permitimos búsquedas con ranking de relevancia (TF-IDF)
+
 
 
 
@@ -60,6 +67,8 @@ Devuelve resultados ordenados por relevancia
 Devuelve el índice invertido completo
 
 
+
+
 💻 Frontend
 El frontend es una interfaz sencilla desarrollada con HTML, CSS y JavaScript, que interactúa con el backend mediante fetch.
 Funcionalidades:
@@ -69,9 +78,13 @@ Funcionalidades:
 Interfaz responsive con estilo minimalista tipo Google
 
 
+
+
 🧠 Lógica del índice invertido
 Cada documento se tokeniza (palabras individuales), y se crea una estructura Map<String, Set<Long>>, donde cada palabra apunta a los IDs de los documentos que la contienen.
 Esto permite realizar búsquedas rápidas sin escanear todo el texto.
+
+
 
 
 ⚙️ Cómo ejecutar el proyecto
@@ -97,13 +110,17 @@ http://localhost:8080/api/documents
 [![MYSQL](https://img.shields.io/badge/Mysql-6DB33F?style=flat-square&logo=Spring&logoColor=white)](https://en.wikipedia.org/wiki/MySql)
 [![HTML](https://img.shields.io/badge/Html-6DB33F?style=flat-square&logo=Spring&logoColor=white)](https://en.wikipedia.org/wiki/Html)
 [![CSS](https://img.shields.io/badge/Css-6DB33F?style=flat-square&logo=Spring&logoColor=white)](https://en.wikipedia.org/wiki/Css)
-[![JAVASCRIPT](https://img.shields.io/badge/SpringBoot-6DB33F?style=flat-square&logo=Spring&logoColor=white)](https://en.wikipedia.org/wiki/JavaScript)
+[![JAVASCRIPT](https://shields.io/badge/JavaScript-F7DF1E?logo=JavaScript&logoColor=000&style=flat-square)](https://en.wikipedia.org/wiki/JavaScript)
+
+
 
 ## Vista previa del proyecto
 Si quieres hechas un vistazo al proyecto, te recomiendo:
 
 ![Imagen del proyecto](https://raw.githubusercontent.com/victorgranadosjimenez/search-engine/refs/heads/master/Captura.JPG?raw=true)
 ![Imagen del proyecto](https://raw.githubusercontent.com/victorgranadosjimenez/search-engine/refs/heads/master/Captura1.JPG?raw=true)
+
+
 
 
 ## Autor ✒️
@@ -117,8 +134,12 @@ VÍCTOR GRANADOS JIMÉNEZ
 * [LinkedIn](www.linkedin.com/in/victorgranadosjimenez/)
 
 
+
+
 ## Instalación 
 Este proyecto no necesita de instalación. Simplemente abre la carpeta o haz doble click en el .html
+
+
   
 ## Licencia 📄
 MIT Public License v3.0
