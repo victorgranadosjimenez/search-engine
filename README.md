@@ -1,8 +1,8 @@
 # 🔍 App Search Engine 
 
 
-![Imagen del proyecto](https://raw.githubusercontent.com/victorgranadosjimenez/videoclub-microservicios-FRONTEND/refs/heads/master/Captura.JPG?raw=true)
-![Imagen del proyecto](https://raw.githubusercontent.com/victorgranadosjimenez/videoclub-microservicios-FRONTEND/refs/heads/master/Captura3.JPG?raw=true)
+![Imagen del proyecto](https://raw.githubusercontent.com/victorgranadosjimenez/search-engine/refs/heads/master/Captura.JPG?raw=true)
+![Imagen del proyecto](https://raw.githubusercontent.com/victorgranadosjimenez/search-engine/refs/heads/master/Captura1.JPG?raw=true)
 
 
 
@@ -143,9 +143,8 @@ http://localhost:8080/api/documents
 ## Vista previa del proyecto
 Si quieres hechas un vistazo al proyecto, te recomiendo:
 
-![Imagen del proyecto](https://raw.githubusercontent.com/victorgranadosjimenez/videoclub-microservicios-FRONTEND/refs/heads/master/Captura.JPG?raw=true)
-![Imagen del proyecto](https://raw.githubusercontent.com/victorgranadosjimenez/videoclub-microservicios-FRONTEND/refs/heads/master/Captura2.JPG?raw=true)
-![Imagen del proyecto](https://raw.githubusercontent.com/victorgranadosjimenez/videoclub-microservicios-FRONTEND/refs/heads/master/Captura3.JPG?raw=true)
+![Imagen del proyecto](https://raw.githubusercontent.com/victorgranadosjimenez/search-engine/refs/heads/master/Captura.JPG?raw=true)
+![Imagen del proyecto](https://raw.githubusercontent.com/victorgranadosjimenez/search-engine/refs/heads/master/Captura1.JPG?raw=true)
 
 
 ## Autor ✒️
