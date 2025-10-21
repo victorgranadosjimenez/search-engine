@@ -1,14 +1,23 @@
-# 🔍 Search Engine Demo
+# 🔍 App Search Engine 
 
+
+![Imagen del proyecto](https://raw.githubusercontent.com/victorgranadosjimenez/videoclub-microservicios-FRONTEND/refs/heads/master/Captura.JPG?raw=true)
+![Imagen del proyecto](https://raw.githubusercontent.com/victorgranadosjimenez/videoclub-microservicios-FRONTEND/refs/heads/master/Captura3.JPG?raw=true)
+
+
+
+## Ejemplo en vivo
+https://victorgranados.com/search-engine/
+
+
+## Descripción 📑
 Aplicación web de búsqueda basada en un **índice invertido** implementado con **Spring Boot** (backend) y **HTML/CSS/JavaScript** (frontend).
-
 Permite:
 - Añadir documentos (título + contenido)
 - Buscar documentos por palabras clave
 - Ver el índice invertido
 - Realizar búsquedas con ranking de relevancia (TF-IDF)
 
----
 
 ## 🧱 Arquitectura del proyecto
 
@@ -27,48 +36,24 @@ search-engine/
 ├── style.css
 └── app.js
 
----
-
-## 🗄️ Base de datos
-
-El proyecto usa **MySQL** con Spring Data JPA.
-
-**Configuración (`application.properties`):**
-
-```properties
-spring.datasource.url=jdbc:mysql://localhost:3306/searchEngine?createDatabaseIfNotExist=true
-spring.datasource.username=root
-spring.datasource.password=12345678
-spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
-spring.jpa.hibernate.ddl-auto=update
-spring.jpa.show-sql=true
-spring.jpa.database-platform=org.hibernate.dialect.MySQLDialect
-
 
 
 🚀 Endpoints principales (API REST)
-Método	Endpoint	Descripción
-GET	/api/documents	Devuelve todos los documentos
-POST	/api/documents	Crea un nuevo documento
-GET	/api/documents/search?q=palabra	Busca documentos que contengan la palabra
-GET	/api/documents/search/ranked?q=palabra	Devuelve resultados ordenados por relevancia
-GET	/api/documents/index	Devuelve el índice invertido completo
+Método  -	Endpoint  -	Descripción
+GET  -	/api/documents	-  Devuelve todos los documentos
+POST  -	/api/documents	-  Crea un nuevo documento
+GET  -	/api/documents/search?q=palabra  -	Busca documentos que contengan la palabra
+GET  -	/api/documents/search/ranked?q=palabra  -	Devuelve resultados ordenados por relevancia
+GET  -	/api/documents/index  -	Devuelve el índice invertido completo
 
 
 💻 Frontend
-
 El frontend es una interfaz sencilla desarrollada con HTML, CSS y JavaScript, que interactúa con el backend mediante fetch.
-
 Funcionalidades:
-
-Añadir nuevos documentos
-
-Buscar por palabra clave o ranking
-
-Ver el índice invertido en formato JSON
-
+- Añadir nuevos documentos
+- Buscar por palabra clave o ranking
+- Ver el índice invertido en formato JSON
 Interfaz responsive con estilo minimalista tipo Google
-
 
 
 🧠 Lógica del índice invertido
@@ -76,36 +61,58 @@ Cada documento se tokeniza (palabras individuales), y se crea una estructura Map
 Esto permite realizar búsquedas rápidas sin escanear todo el texto.
 
 
-
-
-
 ⚙️ Cómo ejecutar el proyecto
 1. Clona el repositorio:
-git clone https://github.com/tuusuario/search-engine.git
-
+git clone https://github.com/victorgranadosjimenez/search-engine.git
 2. Abre el proyecto en tu IDE (IntelliJ, VSCode o Eclipse).
 - Asegúrate de tener MySQL ejecutándose en tu máquina.
-
 3. Ejecuta la aplicación:
 mvn spring-boot:run
-
 4. Abre el frontend (por ejemplo con http-server o doble clic en index.html):
 npx http-server frontend
-
 5. Visita:
 http://localhost:8080/api/documents
 
-o usa tu frontend end
-http://localhost:8081
 
 
 
-🧩 Tecnologías usadas
 
-Java 21
-Spring Boot 3
-Spring Data JPA
-MySQL
-HTML, CSS, JavaScript
-Fetch API
-RESTful API
+
+## Tecnologías 🛠
+[![JAVA](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)](https://es.wikipedia.org/wiki/Java_(lenguaje_de_programaci%C3%B3n))
+[![SPRINGBOOT](https://img.shields.io/badge/SpringBoot-6DB33F?style=flat-square&logo=Spring&logoColor=white)](https://en.wikipedia.org/wiki/Spring_Boot)
+[![MYSQL](https://img.shields.io/badge/Mysql-6DB33F?style=flat-square&logo=Spring&logoColor=white)](https://en.wikipedia.org/wiki/MySql)
+[![HTML](https://img.shields.io/badge/Html-6DB33F?style=flat-square&logo=Spring&logoColor=white)](https://en.wikipedia.org/wiki/Html)
+[![CSS](https://img.shields.io/badge/Css-6DB33F?style=flat-square&logo=Spring&logoColor=white)](https://en.wikipedia.org/wiki/Css)
+[![JAVASCRIPT](https://img.shields.io/badge/SpringBoot-6DB33F?style=flat-square&logo=Spring&logoColor=white)](https://en.wikipedia.org/wiki/JavaScript)
+
+## Vista previa del proyecto
+Si quieres hechas un vistazo al proyecto, te recomiendo:
+
+![Imagen del proyecto](https://raw.githubusercontent.com/victorgranadosjimenez/videoclub-microservicios-FRONTEND/refs/heads/master/Captura.JPG?raw=true)
+![Imagen del proyecto](https://raw.githubusercontent.com/victorgranadosjimenez/videoclub-microservicios-FRONTEND/refs/heads/master/Captura2.JPG?raw=true)
+![Imagen del proyecto](https://raw.githubusercontent.com/victorgranadosjimenez/videoclub-microservicios-FRONTEND/refs/heads/master/Captura3.JPG?raw=true)
+
+
+## Autor ✒️
+VÍCTOR GRANADOS JIMÉNEZ
+
+<img src="https://avatars.githubusercontent.com/u/57761479?v=4" width=115><br>
+
+* [Portafolio](https://victorgranados.com/)
+* [Perfil Github](https://github.com/victorgranadosjimenez)
+* [Correo](granadosvictor01@gmail.com)
+* [LinkedIn](www.linkedin.com/in/victorgranadosjimenez/)
+
+
+## Instalación 
+Este proyecto no necesita de instalación. Simplemente abre la carpeta o haz doble click en el .html
+  
+## Licencia 📄
+MIT Public License v3.0
+No puede usarse comencialmente.
+
+
+
+
+
