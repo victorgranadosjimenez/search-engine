@@ -46,13 +46,18 @@ Este proyecto sigue una estructura **MVC simplificada**, organizada de la siguie
 
 
 
-🚀 Endpoints principales (API REST)
+## 🚀 Endpoints principales (API REST)
 
-GET  -	/api/documents	-  Devuelve todos los documentos
-POST  -	/api/documents	-  Crea un nuevo documento
-GET  -	/api/documents/search?q=palabra  -	Busca documentos que contengan la palabra
-GET  -	/api/documents/search/ranked?q=palabra  -	Devuelve resultados ordenados por relevancia
-GET  -	/api/documents/index  -	Devuelve el índice invertido completo
+# GET	/api/documents
+Devuelve todos los documentos
+# POST	/api/documents
+Crea un nuevo documento
+# GET	/api/documents/search?q=palabra
+Busca documentos que contengan la palabra
+# GET	/api/documents/search/ranked?q=palabra
+Devuelve resultados ordenados por relevancia
+# GET	/api/documents/index
+Devuelve el índice invertido completo
 
 
 💻 Frontend
