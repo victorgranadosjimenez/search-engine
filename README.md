@@ -16,60 +16,25 @@ Cada palabra apunta a los documentos donde aparece.
 
   Etapas del proyecto:
 
-  🧩 Indexación
-
-Añadimos documentos (título + contenido) con endpoint POST "/api/documents"
-
-Los procesamos (tokenizar, eliminar stopwords, normalizar).
-
-Creamos un índice invertido que nos dice en qué documentos aparece cada palabra 
+  🧩 1. Indexación
+- Añadimos documentos (título + contenido) con endpoint POST "/api/documents"
+- Los procesamos (tokenizar, eliminar stopwords, normalizar).
+- Creamos un índice invertido que nos dice en qué documentos aparece cada palabra 
 y lo guardamos en Base de datos.
 
-  🔍 Búsqueda
 
+  🔍 2. Búsqueda
  Dado un texto de búsqueda, encontrar los documentos más relevantes por palabras clave.
-
  Usar algoritmos de ranking básicos (TF-IDF).
 
-  ⚡ Interfaz o API
 
+  ⚡ 3. Interfaz o API
 Buscamos con un endpoint REST  /search?q=palabra
 Muestra primero los documentos más relevantes, según cuántas veces aparece la palabra.
 Además:
 - Resaltamos en amarillo las coincidencias en los resultados.
 - podemos ver el índice invertido.
-- Permitimosr búsquedas con ranking de relevancia (TF-IDF)
-
-
-
-+------------------------------+
-|         Data Source          |
-|  (artículos, textos, etc.)   |
-+--------------+---------------+
-               |
-               v
-+------------------------------+
-|         Indexador            |
-|  - Tokeniza texto            |
-|  - Elimina palabras vacías   |
-|  - Crea índice invertido     |
-+--------------+---------------+
-               |
-               v
-+------------------------------+
-|          Buscador            |
-|  - Recibe consulta           |
-|  - Busca en índice           |
-|  - Calcula relevancia        |
-+--------------+---------------+
-               |
-               v
-+------------------------------+
-|         API / Frontend       |
-|  - Endpoint /search          |
-|  - UI con autocompletado     |
-+------------------------------+
-
+- Permitimos búsquedas con ranking de relevancia (TF-IDF)
 
 
 
