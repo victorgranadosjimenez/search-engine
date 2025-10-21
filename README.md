@@ -1,8 +1,8 @@
 # 🔍 App Search Engine 
 
-![Imagen del proyecto](https://raw.githubusercontent.com/victorgranadosjimenez/search-engine/refs/heads/master/diagrama.png?raw=true)
+
 ![Imagen del proyecto](https://raw.githubusercontent.com/victorgranadosjimenez/search-engine/refs/heads/master/Captura.JPG?raw=true)
-![Imagen del proyecto](https://raw.githubusercontent.com/victorgranadosjimenez/search-engine/refs/heads/master/Captura1.JPG?raw=true)
+![Imagen del proyecto](https://raw.githubusercontent.com/victorgranadosjimenez/search-engine/refs/heads/master/diagrama.png?raw=true)
 
 
 
