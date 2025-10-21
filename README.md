@@ -14,21 +14,23 @@ https://victorgranados.com/search-engine/
 Cuando haces una búsqueda en Google o en un sitio con miles de productos, no se recorren todos los registros en tiempo real, sino que se crea un índice, una estructura de datos optimizada (como un diccionario invertido).
 Cada palabra apunta a los documentos donde aparece.
 
-  Etapas del proyecto:
 
-  🧩 1. Indexación
+## Etapas del proyecto:
+
+🧩 1. Indexación
 - Añadimos documentos (título + contenido) con endpoint POST "/api/documents"
 - Los procesamos (tokenizar, eliminar stopwords, normalizar).
 - Creamos un índice invertido que nos dice en qué documentos aparece cada palabra 
 y lo guardamos en Base de datos.
 
 
-  🔍 2. Búsqueda
+🔍 2. Búsqueda
  Dado un texto de búsqueda, encontrar los documentos más relevantes por palabras clave.
  Usar algoritmos de ranking básicos (TF-IDF).
 
 
-  ⚡ 3. Interfaz o API
+
+⚡ 3. Interfaz o API
 Buscamos con un endpoint REST  /search?q=palabra
 Muestra primero los documentos más relevantes, según cuántas veces aparece la palabra.
 Además:
@@ -39,21 +41,8 @@ Además:
 
 
 ## 🧱 Arquitectura del proyecto
-
 Este proyecto sigue una estructura **MVC simplificada**, organizada de la siguiente forma:
 
-search-engine/
-├── src/main/java/searchEngine/
-│ ├── controller/DocumentController.java → Maneja las peticiones HTTP
-│ ├── service/DocumentService.java → Lógica de negocio y búsquedas
-│ ├── repository/DocumentRepository.java → Acceso a la base de datos (JPA)
-│ ├── domain/Document.java → Entidad JPA (id, title, content)
-│ └── SearchEngineApplication.java → Clase principal de arranque
-├── src/main/resources/application.properties
-└── frontend/ → Archivos estáticos
-├── index.html
-├── style.css
-└── app.js
 
 
 
